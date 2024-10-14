@@ -1,5 +1,5 @@
 <template>
-
+<rqg></rqg>
 </template>
 
 <script>
