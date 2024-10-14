@@ -1,2 +1,1 @@
-edit from mac
-blah blah blah 
+random quotes generator 
