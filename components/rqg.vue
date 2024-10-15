@@ -2,19 +2,49 @@
   <div id="main">
 
 <div class="container">
-    <h1 >quote</h1>
-    <p>author</p>
-    <button>New quote</button>
+    <h3>{{ quote }}</h3>
+    <p>-{{author}}</p>
+    <button @click="newQuote()">New quote</button>
 </div>
 
   </div>
 </template>
 
 <script>
+import axios from 'axios' ;
 export default {
+    mounted() {
+    const apiUrl = 'https://quotes-api-self.vercel.app/quote'
+
+        axios.get(apiUrl).then( 
+        (response) => {
+            this.quote = response.data.quote;
+            this.author = response.data.author;
+        }
+    ).catch( 
+        (error) => {
+            console.error('error fetching data', error)
+        }
+    )
+     
+
+},
+methods : {
+    newQuote() {
+    const apiUrl = 'https://quotes-api-self.vercel.app/quote'
+    axios.get(apiUrl).then( 
+        (response) => {
+            this.quote = response.data.quote;
+            this.author = response.data.author;
+        }
+    )
+}
+},
+
 data() {
     return {
-
+quote : null,
+author:null
     }
 }
 }
