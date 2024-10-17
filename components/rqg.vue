@@ -1,75 +1,69 @@
 <template>
   <div id="main">
-
-<div class="container">
-    <h3>{{ quote }}</h3>
-    <p>-{{author}}</p>
-    <button @click="newQuote()">New quote</button>
-</div>
-
+    <div id="quote-box">
+      <h3 id="text">{{ quote }}</h3>
+      <p id="author">-{{ author }}</p>
+      <button id="new-quote" @click="newQuote()">New quote</button>
+      <a id="tweet-quote" href="https://twitter.com/intent/tweet">post to twitter</a>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios' ;
+import axios from "axios";
 export default {
-    mounted() {
-    const apiUrl = 'https://quotes-api-self.vercel.app/quote'
+  mounted() {
+    const apiUrl = "https://quotes-api-self.vercel.app/quote";
 
-        axios.get(apiUrl).then( 
-        (response) => {
-            this.quote = response.data.quote;
-            this.author = response.data.author;
-        }
-    ).catch( 
-        (error) => {
-            console.error('error fetching data', error)
-        }
-    )
-     
-
-},
-methods : {
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        this.quote = response.data.quote;
+        this.author = response.data.author;
+      })
+      .catch((error) => {
+        console.error("error fetching data", error);
+      });
+  },
+  methods: {
     newQuote() {
-    const apiUrl = 'https://quotes-api-self.vercel.app/quote'
-    axios.get(apiUrl).then( 
-        (response) => {
-            this.quote = response.data.quote;
-            this.author = response.data.author;
-        }
-    )
-}
-},
+      const apiUrl = "https://quotes-api-self.vercel.app/quote";
+      axios.get(apiUrl).then((response) => {
+        this.quote = response.data.quote;
+        this.author = response.data.author;
+      });
+    },
+  },
 
-data() {
+  data() {
     return {
-quote : null,
-author:null
-    }
-}
-}
+      quote: null,
+      author: null,
+    };
+  },
+};
 </script>
 
 <style>
 #main {
-    display: flex;
-align-items: center;
-justify-content: center;
-font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  margin-top: 48px;
 }
-.container {
-    border: 1px solid black;
-    width: 340px;
-    height:170px;
-    display: block;
-    align-content: center;
-    text-align: center;
-
+#quote-box {
+  border: 1px solid black;
+  width: 340px;
+  height: 170px;
+  display: block;
+  align-content: center;
+  text-align: center;
 }
-h1{
-    border: 1px solid black;
+#text {
+  border: 1px solid black;
 }
-p{
-    border: 1px solid black;
+#author {
+  border: 1px solid black;
 }
 </style>
