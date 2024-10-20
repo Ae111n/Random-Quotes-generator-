@@ -4,14 +4,16 @@
       <h3 id="text">{{ quote }}</h3>
       <p id="author">-{{ author }}</p>
       <button id="new-quote" @click="newQuote()">New quote</button>
+      
       <a id="tweet-quote" :href="xurl"
-        >post to twitter</a
-      >
+        >tweet</a>
+      
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
+
 export default {
   mounted() {
     const apiUrl = "https://quotes-api-self.vercel.app/quote";
@@ -43,7 +45,7 @@ export default {
   },
   computed :{
     xurl(){
-return "http://twitter.com/share?text=" + this.quote 
+return "https://twitter.com/intent/tweet?text=" + this.quote 
 }
   }
 };
@@ -58,7 +60,7 @@ return "http://twitter.com/share?text=" + this.quote
   margin-top: 48px;
 }
 #quote-box {
-  border: 1px solid black;
+
   width: 340px;
   height: 170px;
   display: block;
@@ -66,9 +68,11 @@ return "http://twitter.com/share?text=" + this.quote
   text-align: center;
 }
 #text {
-  border: 1px solid black;
+
 }
 #author {
-  border: 1px solid black;
+
+}
+#tweet-quote {
 }
 </style>
